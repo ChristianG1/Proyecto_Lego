@@ -1,23 +1,21 @@
-const mongoose = require('mongoose');
-
 const express = require('express');
-const Architecture = require('../models/architecture');
+const StarWars = require('../models/starWars');
 const router = express.Router();
 
 router.get('/',async(req, res)=>{ 
-    const architectures = await Architecture.find();
-    res.send(architectures);
+    const starWars = await StarWars.find();
+    res.send(starWars);
 })
 
 router.post('/',async(req, res)=>{ 
-    const architecture = new Architecture({ 
+    const starWar = new StarWars({ 
         name: req.body.name, 
         price: req.body.price, 
         description: req.body.description,
         noPieces: req.body.noPieces, 
         age: req.body.age
     })
-    const result = await architecture.save(); 
+    const result = await starWar.save(); 
     res.status(201).send(result);
 })
 

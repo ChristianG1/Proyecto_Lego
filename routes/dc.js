@@ -1,23 +1,21 @@
-const mongoose = require('mongoose');
-
 const express = require('express');
-const Architecture = require('../models/architecture');
+const Dc = require('../models/dc');
 const router = express.Router();
 
 router.get('/',async(req, res)=>{ 
-    const architectures = await Architecture.find();
-    res.send(architectures);
+    const dcs = await Dc.find();
+    res.send(dcs);
 })
 
 router.post('/',async(req, res)=>{ 
-    const architecture = new Architecture({ 
+    const dc = new Dc({ 
         name: req.body.name, 
         price: req.body.price, 
         description: req.body.description,
         noPieces: req.body.noPieces, 
         age: req.body.age
     })
-    const result = await architecture.save(); 
+    const result = await dc.save(); 
     res.status(201).send(result);
 })
 

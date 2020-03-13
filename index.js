@@ -2,7 +2,19 @@ const mongoose = require('mongoose');
 const express = require('express');
 
 const app = express();
+
+const architecture = require('./routes/architecture');
+const dc = require('./routes/dc');
+const marvel = require('./routes/marvel');
+const starWars = require('./routes/starWars');
+
 app.use(express.json());
+
+app.use('/api/architecture', architecture);
+app.use('/api/dc', dc);
+app.use('/api/marvel', marvel);
+app.use('/api/starWars', starWars);
+
 const port = process.env.PORT || 3003; 
 
 app.listen(port, ()=> console.log('Escuchando en el puerto: ' + port))
